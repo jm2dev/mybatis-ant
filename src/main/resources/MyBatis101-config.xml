@@ -8,12 +8,10 @@
     <environment id="development">
       <transactionManager type="JDBC"/>
       <dataSource type="UNPOOLED">
-        <!--<property name="driver" value="org.postgresql.Driver" />   
-        <property name="url" value="jdbc:postgresql:MyBatis101" /> -->
-         <property name="driver" value="com.mysql.jdbc.Driver" /> 
-         <property name="url" value="jdbc:mysql://localhost:3306/MyBatis101" />
-        <property name="username" value="jm" />   <!-- TODO: FILL IN -->
-        <property name="password" value="" />   <!-- TODO: FILL IN -->
+        <property name="driver" value="com.mysql.jdbc.Driver" /> 
+        <property name="url" value="jdbc:mysql://localhost:3306/MyBatis101" />
+        <property name="username" value="jm" />
+        <property name="password" value="" />
       </dataSource>
     </environment>
   </environments>

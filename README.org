@@ -13,3 +13,7 @@ https://github.com/midpeter444/MyBatis-UserGuide-Companion-Code.git
 - TestNG: Comment out the "testng" definition and run "ant resolve" to
   get it.
 
+** TO DO
+
+I tried to set up slf4j - logback, but not sure it is working.
+
