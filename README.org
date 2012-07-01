@@ -2,9 +2,14 @@
 
 A project to play with relational databases using mybatis and ant.
 
+Inspired by
+https://github.com/midpeter444/MyBatis-UserGuide-Companion-Code.git
+
 ** Dependencies
 
 - MySQL database
 - ANT
 - IVY for dependencies
+- TestNG: Comment out the "testng" definition and run "ant resolve" to
+  get it.
 
