@@ -1,0 +1,3 @@
+*MyBATIS and ANT
+
+A project to play with relational databases using mybatis and ant.
