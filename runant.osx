@@ -1,0 +1,2 @@
+#!/bin/sh
+ant -lib /usr/local/Cellar/ivy/2.2.0/libexec/ivy-2.2.0.jar $*

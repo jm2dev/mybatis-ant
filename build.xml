@@ -1,0 +1,97 @@
+<project name="mybatis-ant" default="run" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+  <!-- Template based on: http://sourceforge.net/apps/mediawiki/import-ant/index.php?title=Snippets -->
+  <description>Build script for MyBATIS-ANT</description>
+
+  <!-- load environment variables as properties -->
+  <property environment="env"/>
+
+  <!-- default folder location properties -->
+  <property name="src.dir" value="src/main/java"/>
+  <property name="resources.dir" value="src/main/resources"/>
+  <property name="build.dir" value="target"/>
+  <property name="lib.dir" value="lib"/> 
+  <property name="test.dir" value="src/test/java"/>
+  <property name="testng.output.dir" value="testng-output"/>
+
+  <!-- project classpath -->
+  <path id="project.classpath">
+    <!-- compiled classes -->
+    <pathelement location="${build.dir}" />
+    <!-- libraries -->
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar" />  
+    </fileset>
+  </path>
+
+  <!-- resolve dependencies -->
+  <target name="resolve" description="--> retrieve dependencies with ivy">
+    <ivy:retrieve />
+  </target>
+
+  <!-- clean -->
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+
+  <!-- basic -->
+  <target name="init" depends="clean, resolve">
+    <mkdir dir="${build.dir}"/>
+  </target>
+
+  <!-- compile -->
+  <target name="prepare-resources" depends="init">
+    <copy todir="${build.dir}" overwrite="true">
+      <fileset dir="${resources.dir}" includes="**/*.xml" />
+    </copy>
+  </target>
+
+  <target name="compile" depends="init,prepare-resources"
+          description="Compile java classes">
+    <javac
+        srcdir="${src.dir}"
+        destdir="${build.dir}">
+      <classpath refid="project.classpath" />
+    </javac>
+  </target>
+  
+  <!-- compile tests -->
+  <target name="test-compile" depends="compile">
+    <javac 
+        srcdir="${test.dir}"
+        destdir="${build.dir}">
+      <classpath refid="project.classpath" />
+    </javac>
+  </target>
+
+  <!-- test -->
+  <!-- Define <testng> task -->
+  <taskdef name="testng" classpath="${lib.dir}/testng-6.5.2.jar"
+           classname="org.testng.TestNGAntTask" />
+
+  <target name="test" depends="test-compile">
+    <testng classpathref="project.classpath">
+      <classfileset dir="${build.dir}"/>
+    </testng>
+
+    <mkdir dir="${testng.output.dir}"/><!-- Create the output directory. -->
+ 
+    <testng outputdir="${testng.output.dir}" classpathref="project.classpath"> 
+      <xmlfileset dir="." includes="testng.xml"/> 
+    </testng>
+
+  </target>
+
+  <!-- run on console -->
+  <property name="run.main-class" value="mybatis101.Main"/>
+  <property name="run.args" value=""/>
+
+  <target name="run" depends="test"
+          description="Run MyBatis101 program">
+    <java classname="${run.main-class}" fork="true">
+      <arg line="${run.args}" />
+      <classpath>
+        <path refid="project.classpath" />
+      </classpath>
+    </java>
+  </target>
+</project>
