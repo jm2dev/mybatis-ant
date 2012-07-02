@@ -19,42 +19,30 @@ public class ProvinciaTests {
     public void setUp() {
         try {
             initSessionFactory();
+            session = sessionFactory.openSession();
         } catch(Exception e) {
-            System.out.println(e.getMessage());
             logger.error(e.getMessage());
         }
     }
 
     @Test
     public void retrieveSingleProvinceFromDatabase() {
-        SqlSession session = sessionFactory.openSession();
-
-        try {
-            ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
-            Provincia provincia = mapper.getProvincia(2);
+        ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
+        Provincia provincia = mapper.getProvincia(2);
             
-            Assert.assertEquals(provincia.getNombre(), "Albacete");
-        } finally {
-            session.close();		
-        }
+        Assert.assertEquals(provincia.getNombre(), "Albacete");
     }
 
     @Test
     public void retrieveAllSpanishProvinces() {
-        SqlSession session = sessionFactory.openSession();
+        ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
+        List<Provincia> provincias = mapper.getProvincias();
 
-        try {
-            ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
-            List<Provincia> provincias = mapper.getProvincias();
-
-            Assert.assertEquals(provincias.size(), 52);
-        } finally {
-            session.close();
-        }
+        Assert.assertEquals(provincias.size(), 52);
     }
 
     private static SqlSessionFactory sessionFactory;
-
+    private SqlSession session;
     private Logger logger = LoggerFactory.getLogger(ProvinciaTests.class);
 
     public static void initSessionFactory() throws Exception {
