@@ -4,6 +4,7 @@ import org.testng.annotations.*;
 import org.testng.Assert;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -25,7 +26,7 @@ public class ProvinciaTests {
     }
 
     @Test
-    public void retrieveUsersFromDatabase() {
+    public void retrieveSingleProvinceFromDatabase() {
         SqlSession session = sessionFactory.openSession();
 
         try {
@@ -35,6 +36,20 @@ public class ProvinciaTests {
             Assert.assertEquals(provincia.getNombre(), "Albacete");
         } finally {
             session.close();		
+        }
+    }
+
+    @Test
+    public void retrieveAllSpanishProvinces() {
+        SqlSession session = sessionFactory.openSession();
+
+        try {
+            ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
+            List<Provincia> provincias = mapper.getProvincias();
+
+            Assert.assertEquals(provincias.size(), 52);
+        } finally {
+            session.close();
         }
     }
 
