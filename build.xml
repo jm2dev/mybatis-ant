@@ -1,4 +1,4 @@
-<project name="mybatis-ant" default="run" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="mybatis-ant" default="test" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
   <!-- Template based on: http://sourceforge.net/apps/mediawiki/import-ant/index.php?title=Snippets -->
   <description>Build script for MyBATIS-ANT</description>
 
@@ -74,7 +74,6 @@
   <!-- Define <testng> task -->
   <taskdef name="testng" classpath="${tools.dir}/testng-6.5.2.jar"
            classname="org.testng.TestNGAntTask" />
-
   <target name="test" depends="test-compile">
     <testng classpathref="project.classpath">
       <classfileset dir="${build.dir}"/>

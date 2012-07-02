@@ -25,6 +25,11 @@ public class ProvinciaTests {
         }
     }
 
+    @AfterClass 
+    public void tearDown() {
+        session.close();		
+    }
+
     @Test
     public void retrieveSingleProvinceFromDatabase() {
         ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
