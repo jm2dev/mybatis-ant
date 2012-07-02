@@ -12,6 +12,7 @@
   <property name="lib.dir" value="lib"/> 
   <property name="test.dir" value="src/test/java"/>
   <property name="testng.output.dir" value="testng-output"/>
+  <property name="tools.dir" value="tools"/>
 
   <!-- project classpath -->
   <path id="project.classpath">
@@ -26,6 +27,11 @@
   <!-- resolve dependencies -->
   <target name="resolve" description="--> retrieve dependencies with ivy">
     <ivy:retrieve />
+  </target>
+
+  <!-- clean dependencies -->
+  <target name="clean-dependencies">
+    <delete dir="${lib.dir}"/>
   </target>
 
   <!-- clean -->
@@ -66,7 +72,7 @@
 
   <!-- test -->
   <!-- Define <testng> task -->
-  <taskdef name="testng" classpath="${lib.dir}/testng-6.5.2.jar"
+  <taskdef name="testng" classpath="${tools.dir}/testng-6.5.2.jar"
            classname="org.testng.TestNGAntTask" />
 
   <target name="test" depends="test-compile">
