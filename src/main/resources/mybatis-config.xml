@@ -9,15 +9,11 @@
       <transactionManager type="JDBC"/>
       <dataSource type="UNPOOLED">
         <property name="driver" value="com.mysql.jdbc.Driver" /> 
-        <property name="url" value="jdbc:mysql://localhost:3306/localidades" />
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/municipios" />
         <property name="username" value="jm" />
         <property name="password" value="" />
       </dataSource>
     </environment>
   </environments>
-
-  <mappers>
-    <mapper resource="com.jm2dev.localidades.ProvinciaMapper" />
-  </mappers>
 
 </configuration>

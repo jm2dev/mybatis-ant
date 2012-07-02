@@ -19,6 +19,7 @@ public class ProvinciaTests {
         try {
             initSessionFactory();
         } catch(Exception e) {
+            System.out.println(e.getMessage());
             logger.error(e.getMessage());
         }
     }
@@ -31,7 +32,7 @@ public class ProvinciaTests {
             ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
             Provincia provincia = mapper.getProvincia(2);
             
-            Assert.assertEquals(provincia.getNombre(), "Madrid");
+            Assert.assertEquals(provincia.getNombre(), "Albacete");
         } finally {
             session.close();		
         }
@@ -45,5 +46,6 @@ public class ProvinciaTests {
         Reader rdr = Resources.getResourceAsReader("mybatis-config.xml");
         sessionFactory = new SqlSessionFactoryBuilder().build(rdr);
         rdr.close();
+        sessionFactory.getConfiguration().addMapper(ProvinciaMapper.class);
     }
 }
