@@ -5,6 +5,10 @@ A project to play with relational databases using mybatis and ant.
 Inspired by
 https://github.com/midpeter444/MyBatis-UserGuide-Companion-Code.git
 
+Spanish cities MySQL database:
+
+http://www.emiliort.com/2011/07/30/municipios-espana-coordenadas/
+
 ** Dependencies
 
 - MySQL database
@@ -14,6 +18,9 @@ https://github.com/midpeter444/MyBatis-UserGuide-Companion-Code.git
   get it.
 
 ** TO DO
+
+runant.osx is a script to simplify my setup in osx. In fedora linux
+with ant and ivy intalled via packages, no problem, just call ant.
 
 I tried to set up slf4j - logback, but not sure it is working.
 

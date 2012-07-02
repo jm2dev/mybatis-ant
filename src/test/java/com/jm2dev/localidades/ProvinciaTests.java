@@ -1,4 +1,4 @@
-package mybatis101;
+package com.jm2dev.localidades;
 
 import org.testng.annotations.*;
 import org.testng.Assert;
@@ -10,26 +10,28 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class JmTests {
-    @Test
-    public void funciona() {
-        System.out.println("Testing JM!");
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class ProvinciaTests {
+    @BeforeClass
+    public void setUp() {
+        try {
+            initSessionFactory();
+        } catch(Exception e) {
+            logger.error(e.getMessage());
+        }
     }
 
     @Test
     public void retrieveUsersFromDatabase() {
-        try {
-            initSessionFactory();
-        } catch(Exception e) {
-            System.out.println("Puto error");
-        }
-
         SqlSession session = sessionFactory.openSession();
 
         try {
-            Mapper mapper = session.getMapper(Mapper.class);
-            User user = mapper.getUser(2);
-            Assert.assertEquals(user.getName(), "User2");
+            ProvinciaMapper mapper = session.getMapper(ProvinciaMapper.class);
+            Provincia provincia = mapper.getProvincia(2);
+            
+            Assert.assertEquals(provincia.getNombre(), "Madrid");
         } finally {
             session.close();		
         }
@@ -37,10 +39,11 @@ public class JmTests {
 
     private static SqlSessionFactory sessionFactory;
 
+    private Logger logger = LoggerFactory.getLogger(ProvinciaTests.class);
+
     public static void initSessionFactory() throws Exception {
-        Reader rdr = Resources.getResourceAsReader("MyBatis101-config.xml");
+        Reader rdr = Resources.getResourceAsReader("mybatis-config.xml");
         sessionFactory = new SqlSessionFactoryBuilder().build(rdr);
         rdr.close();
     }
-
 }
