@@ -17,6 +17,22 @@ http://www.emiliort.com/2011/07/30/municipios-espana-coordenadas/
 - TestNG: Comment out the "testng" definition and run "ant resolve" to
   get it.
 
+
+** MySQL settings:
+
+- Create database
+- Grant access to application user
+
+#+BEGIN_SRC sql
+create municipios;
+
+GRANT ALL PRIVILEGES ON `municipios`.* TO 'jm'@'localhost' WITH GRANT OPTION; 
+#+END_SEC
+
+#+BEGIN_SRC sh
+mysql -u root -p < src/main/sql/municipios-geolocalizados.sql
+#+END_SRC
+
 ** TO DO
 
 runant.osx is a script to simplify my setup in osx. In fedora linux
