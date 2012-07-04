@@ -27,7 +27,7 @@ http://www.emiliort.com/2011/07/30/municipios-espana-coordenadas/
 create municipios;
 
 GRANT ALL PRIVILEGES ON `municipios`.* TO 'jm'@'localhost' WITH GRANT OPTION; 
-#+END_SEC
+#+END_SRC
 
 #+BEGIN_SRC sh
 mysql -u root -p < src/main/sql/municipios-geolocalizados.sql
