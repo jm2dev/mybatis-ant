@@ -1,4 +1,4 @@
-<project name="mybatis-ant" default="test" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="mybatis-ant" default="run" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
   <!-- Template based on: http://sourceforge.net/apps/mediawiki/import-ant/index.php?title=Snippets -->
   <description>Build script for MyBATIS-ANT</description>
 
@@ -88,11 +88,11 @@
   </target>
 
   <!-- run on console -->
-  <property name="run.main-class" value="mybatis101.Main"/>
+  <property name="run.main-class" value="com.jm2dev.localidades.Main"/>
   <property name="run.args" value=""/>
 
   <target name="run" depends="test"
-          description="Run MyBatis101 program">
+          description="Run Localidades program">
     <java classname="${run.main-class}" fork="true">
       <arg line="${run.args}" />
       <classpath>
