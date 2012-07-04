@@ -12,6 +12,7 @@
   <property name="lib.dir" value="lib"/> 
   <property name="test.dir" value="src/test/java"/>
   <property name="testng.output.dir" value="testng-output"/>
+  <property name="dist.dir"  location="dist"/>
   <property name="tools.dir" value="tools"/>
 
   <!-- project classpath -->
@@ -38,6 +39,7 @@
   <target name="clean">
     <delete dir="${build.dir}"/>
     <delete dir="${testng.output.dir}"/>
+    <delete dir="${dist}"/>
   </target>
 
   <!-- basic -->
@@ -99,5 +101,16 @@
         <path refid="project.classpath" />
       </classpath>
     </java>
+  </target>
+
+  <target name="dist" depends="test"
+          description="generate the distribution" >
+    <!-- Create the distribution directory -->
+    <mkdir dir="${dist.dir}/lib"/>
+
+    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar
+         file -->
+    <jar jarfile="${dist.dir}/lib/MyBatis-ANT.jar"
+         basedir="${build.dir}"/>
   </target>
 </project>
