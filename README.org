@@ -17,6 +17,13 @@ http://www.emiliort.com/2011/07/30/municipios-espana-coordenadas/
 - TestNG: Comment out the "testng" definition and run "ant resolve" to
   get it.
 
+#+BEGIN_SRC bash
+sudo yum install mysql-server
+sudo systemctl start mysqld.service
+sudo systemctl enable mysqld.service
+
+sudo yum install ant apache-ivy
+#+END_SRC
 
 ** MySQL settings:
 
